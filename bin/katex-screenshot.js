@@ -14,4 +14,7 @@ let args = [appPath];
 args = args.concat(process.argv.slice(2));
 
 // Run electron on our application and forward all stdio
-spawn(electronPath, args, {stdio: 'inherit'});
+let child = spawn(electronPath, args, {stdio: 'inherit'});
+child.on('exit', function handleExit (code, signal) {
+  process.exit(code);
+});
