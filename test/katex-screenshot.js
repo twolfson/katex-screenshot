@@ -1,10 +1,18 @@
 // Load in dependencies
-var assert = require('assert');
-var katexScreenshot = require('../');
+const assert = require('assert');
+
+// Define our constants
+const katexScreenshotFilepath = __dirname + '/../bin/katex-screenshot.js';
 
 // Start our tests
-describe('katex-screenshot', function () {
-  it('returns awesome', function () {
-    assert.strictEqual(katexScreenshot(), 'awesome');
+describe.skip('katex-screenshot screenshotting a valid .tex file', function () {
+  it('generates a screenshot', function () {
+    assert.strictEqual(true, false);
+  });
+});
+
+describe.skip('katex-screenshot screenshotting an invalid .tex file', function () {
+  it('outputs error message', function () {
+    assert.strictEqual(true, false);
   });
 });
