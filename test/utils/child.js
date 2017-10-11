@@ -5,9 +5,15 @@ const spawnSync = require('child_process').spawnSync;
 // Define our execution helper
 function _filterStderr(stderr) {
   return stderr.split(/\n/g).filter(function isOutOfScopeLine (line) {
-    // Error: [27574:1011/011913.891018:ERROR:gles2_cmd_decoder.cc(2475)] [GroupMarkerNotSet(crbug.com/242999)!:D01089D00A3B0000]GL ERROR :GL_INVALID_ENUM : BackFramebuffer::Create: <- error from previous GL command
-    // Xlib:  extension "RANDR" missing on display ":99.0".
-    return !(line.includes('GL ERROR') || line.includes('extension "RANDR" missing'));
+    // Linux errors:
+    //   Error: [27574:1011/011913.891018:ERROR:gles2_cmd_decoder.cc(2475)] [GroupMarkerNotSet(crbug.com/242999)!:D01089D00A3B0000]GL ERROR :GL_INVALID_ENUM : BackFramebuffer::Create: <- error from previous GL command
+    // Travis CI errors:
+    //   Xlib:  extension "RANDR" missing on display ":99.0".
+    //   Error: process 2776: D-Bus library appears to be incorrectly set up; failed to read machine uuid: Failed to open "/etc/machine-id": No such file or directory
+    return !(
+      line.includes('GL ERROR') ||
+      line.includes('extension "RANDR" missing') ||
+      line.includes('D-Bus library appears to be incorrectly set up'));
   }).join('\n');
 }
 exports.run = function (cmd, args) {
