@@ -10,7 +10,7 @@ This was built to make generating images for Medium posts easier. Converts:
 
 into
 
-![katex-screenshot result](test/actual-files/valid.png)
+![katex-screenshot result](test/expected-files/valid.png)
 
 [KaTeX]: https://github.com/Khan/KaTeX
 
