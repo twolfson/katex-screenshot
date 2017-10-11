@@ -47,10 +47,12 @@ To convert multiple files, we recommend sticking to `bash`:
 
 ```bash
 # For each of our input files
+# DEV: We use `&` and `wait` to generate images in parallel
 for filepath in *.tex; do
   # Generate a corresponding output file (e.g. foo.tex -> foo.tex.png)
-  katex-screenshot "$filepath" "$filepath.png"
+  katex-screenshot "$filepath" "$filepath.png" &
 done
+wait
 ```
 
 ## Contributing
