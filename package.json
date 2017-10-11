@@ -1,0 +1,51 @@
+{
+  "name": "katex-screenshot",
+  "description": "Convert KaTeX to images via screenshots",
+  "version": "1.0.0",
+  "homepage": "https://github.com/StandardCyborg/katex-screenshot",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/StandardCyborg/katex-screenshot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/StandardCyborg/katex-screenshot/issues"
+  },
+  "main": "lib/katex-screenshot",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "license": "Unlicense",
+  "scripts": {
+    "precheck": "twolfson-style precheck lib/ test/",
+    "lint": "twolfson-style lint lib/ test/",
+    "pretest": "twolfson-style install",
+    "test": "npm run precheck && mocha --reporter dot && npm run lint"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "foundry": "~4.3.2",
+    "foundry-release-git": "~2.0.2",
+    "foundry-release-npm": "~2.0.2",
+    "jscs": "~3.0.7",
+    "jshint": "~2.9.4",
+    "mocha": "~3.1.2",
+    "twolfson-style": "~1.6.1"
+  },
+  "keywords": [
+    "katex",
+    "latex",
+    "image",
+    "screenshot"
+  ],
+  "foundry": {
+    "releaseCommands": [
+      "foundry-release-git",
+      "foundry-release-npm"
+    ]
+  }
+}
