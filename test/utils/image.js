@@ -3,7 +3,10 @@
 'use strict';
 
 // Load in our dependencies
+const fs = require('fs');
+
 const getPixels = require('get-pixels');
+const savePixels = require('save-pixels');
 
 // Define our helpers
 exports.loadActual = function (filepath) {
@@ -24,4 +27,10 @@ exports.loadExpected = function (filepath) {
       done(err);
     });
   });
+};
+
+exports._saveImage = function (filepath, pixels, done) {
+  let writeStream = fs.createWriteStream(filepath);
+  writeStream.on('close', done);
+  savePixels(pixels, 'png').pipe(writeStream);
 };

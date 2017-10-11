@@ -4,6 +4,7 @@
 // Load in dependencies
 const expect = require('chai').expect;
 const pixelmatch = require('pixelmatch');
+const ndarray = require('ndarray');
 
 const childUtils = require('./utils/child');
 const imageUtils = require('./utils/image');
@@ -28,10 +29,15 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
     expect(`${actualWidth}x${actualHeight}`).to.equal(`${expectedWidth}x${expectedHeight}`);
 
     // Perform fuzzy comparison
-    this.diffPixels = new Uint8Array(this.expectedPixels.data.length);
+    let diffPixels = ndarray(new Uint8Array(expectedWidth * expectedHeight * 4),
+        [expectedWidth, expectedHeight, 4]);
     let numDiffPixels = pixelmatch(
-      this.actualPixels.data, this.expectedPixels.data, this.diffPixels,
-      expectedWidth, expectedHeight, {threshold: 0.1});
+      this.actualPixels.data, this.expectedPixels.data, diffPixels.data,
+      expectedWidth, expectedHeight, {threshold: 0.4});
+    if (numDiffPixels !== 0) {
+      console.error('Unexpected difference, saving diff image to `debug.png`');
+      imageUtils._saveImage('debug.png', diffPixels, function noop () {});
+    }
     expect(numDiffPixels).to.equal(0);
   });
 });
