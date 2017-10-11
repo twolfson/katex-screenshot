@@ -3,8 +3,6 @@
 
 // Load in dependencies
 const expect = require('chai').expect;
-const pixelmatch = require('pixelmatch');
-const ndarray = require('ndarray');
 
 const childUtils = require('./utils/child');
 const imageUtils = require('./utils/image');
@@ -17,28 +15,20 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
   childUtils.run(katexScreenshotFilepath, [
     __dirname + '/test-files/valid.tex',
     __dirname + '/actual-files/valid.png']);
-  imageUtils.loadActual(__dirname + '/actual-files/valid.png');
-  imageUtils.loadExpected(__dirname + '/expected-files/valid.png');
+  imageUtils.loadPixels('actualPixels', __dirname + '/actual-files/valid.png');
+  imageUtils.loadPixels('expectedPixelsLinux', __dirname + '/expected-files/valid-linux.png');
+  imageUtils.loadPixels('expectedPixelsOsx', __dirname + '/expected-files/valid-osx.png');
 
   it('generates a screenshot', function () {
-    // Verify dimensions are the same
-    let actualWidth = this.actualPixels.shape[0];
-    let expectedWidth = this.expectedPixels.shape[0];
-    let actualHeight = this.actualPixels.shape[1];
-    let expectedHeight = this.expectedPixels.shape[1];
-    expect(`${actualWidth}x${actualHeight}`).to.equal(`${expectedWidth}x${expectedHeight}`);
-
-    // Perform fuzzy comparison
-    let diffPixels = ndarray(new Uint8Array(expectedWidth * expectedHeight * 4),
-        [expectedWidth, expectedHeight, 4]);
-    let numDiffPixels = pixelmatch(
-      this.actualPixels.data, this.expectedPixels.data, diffPixels.data,
-      expectedWidth, expectedHeight, {threshold: 0.4});
-    if (numDiffPixels !== 0) {
-      console.error('Unexpected difference, saving diff image to `debug.png`');
-      imageUtils._saveImage('debug.png', diffPixels, function noop () {});
+    try {
+      expect(this.actualPixels).to.deep.equal(this.expectedPixelsLinux);
+    } catch (err) {
+      // Ignore first assertion error
+      if (err.name !== 'AssertionError') {
+        throw err;
+      }
     }
-    expect(numDiffPixels).to.equal(0);
+    expect(this.actualPixels).to.deep.equal(this.expectedPixelsOsx);
   });
 });
 
