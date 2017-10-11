@@ -1,6 +1,8 @@
 // Load in dependencies
 const assert = require('assert');
 
+const childUtils = require('./utils/child');
+
 // Define our constants
 const katexScreenshotFilepath = __dirname + '/../bin/katex-screenshot.js';
 
