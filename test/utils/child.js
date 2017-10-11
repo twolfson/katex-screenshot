@@ -14,7 +14,7 @@ function _filterStderr(stderr) {
     return !(
       line.includes('GL ERROR') ||
       line.includes('extension "RANDR" missing') ||
-      line.includes('D-Bus library appears to be incorrectly set up'));
+      line.includes('D-Bus library appears to be incorrectly set up') ||
       line.includes('manual page for dbus-uuidgen'));
   }).join('\n');
 }
