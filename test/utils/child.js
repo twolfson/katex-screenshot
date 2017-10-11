@@ -9,11 +9,13 @@ function _filterStderr(stderr) {
     //   Error: [27574:1011/011913.891018:ERROR:gles2_cmd_decoder.cc(2475)] [GroupMarkerNotSet(crbug.com/242999)!:D01089D00A3B0000]GL ERROR :GL_INVALID_ENUM : BackFramebuffer::Create: <- error from previous GL command
     // Travis CI errors:
     //   Xlib:  extension "RANDR" missing on display ":99.0".
-    //   Error: process 2776: D-Bus library appears to be incorrectly set up; failed to read machine uuid: Failed to open "/etc/machine-id": No such file or directory
+    //   process 2776: D-Bus library appears to be incorrectly set up; failed to read machine uuid: Failed to open "/etc/machine-id": No such file or directory
+    //     See the manual page for dbus-uuidgen to correct this issue.
     return !(
       line.includes('GL ERROR') ||
       line.includes('extension "RANDR" missing') ||
       line.includes('D-Bus library appears to be incorrectly set up'));
+      line.includes('manual page for dbus-uuidgen'));
   }).join('\n');
 }
 exports.run = function (cmd, args) {
