@@ -3,6 +3,7 @@
 
 // Load in dependencies
 const expect = require('chai').expect;
+const pixelmatch = require('pixelmatch');
 
 const childUtils = require('./utils/child');
 const imageUtils = require('./utils/image');
@@ -19,7 +20,19 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
   imageUtils.loadExpected(__dirname + '/expected-files/valid.png');
 
   it('generates a screenshot', function () {
-    expect(this.actualPixels).to.deep.equal(this.expectedPixels);
+    // Verify dimensions are the same
+    let actualWidth = this.actualPixels.shape[0];
+    let expectedWidth = this.expectedPixels.shape[0];
+    let actualHeight = this.actualPixels.shape[1];
+    let expectedHeight = this.expectedPixels.shape[1];
+    expect(`${actualWidth}x${actualHeight}`).to.equal(`${expectedWidth}x${expectedHeight}`);
+
+    // Perform fuzzy comparison
+    this.diffPixels = new Uint8Array(expectedWidth * expectedHeight * 4);
+    let numDiffPixels = pixelmatch(
+      this.actualPixels.data, this.expectedPixels.data, this.diffPixels,
+      expectedWidth, expectedHeight, {threshold: 0.1});
+    expect(numDiffPixels).to.equal(0);
   });
 });
 
