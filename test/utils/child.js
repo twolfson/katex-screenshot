@@ -6,7 +6,8 @@ const spawnSync = require('child_process').spawnSync;
 function _filterStderr(stderr) {
   return stderr.split(/\n/g).filter(function isOutOfScopeLine (line) {
     // Error: [27574:1011/011913.891018:ERROR:gles2_cmd_decoder.cc(2475)] [GroupMarkerNotSet(crbug.com/242999)!:D01089D00A3B0000]GL ERROR :GL_INVALID_ENUM : BackFramebuffer::Create: <- error from previous GL command
-    return !line.includes('GL ERROR');
+    // Xlib:  extension "RANDR" missing on display ":99.0".
+    return !(line.includes('GL ERROR') || line.includes('extension "RANDR" missing'));
   }).join('\n');
 }
 exports.run = function (cmd, args) {
