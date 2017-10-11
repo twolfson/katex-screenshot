@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Load in our dependencies
-var path = require('path');
-var spawn = require('child_process').spawn;
-var electronPath = require('electron');
+const path = require('path');
+const spawn = require('child_process').spawn;
+const electronPath = require('electron');
 
 // Find our application
-var appPath = path.join(__dirname, '..');
-var args = [appPath];
+let appPath = path.join(__dirname, '..');
+let args = [appPath];
 
 // Append all arguments after our node invocation
 // e.g. `node bin/app.js --version` -> `--version`
