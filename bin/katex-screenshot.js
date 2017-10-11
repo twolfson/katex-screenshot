@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 // Taken from https://github.com/twolfson/record-a-cast/blob/1.4.1/bin/record-a-cast.js
+// Enable strict mode for Node.js@4
+'use strict';
+
 // Load in our dependencies
 const path = require('path');
 const spawn = require('child_process').spawn;

@@ -1,3 +1,6 @@
+// Enable strict mode for Node.js@4
+'use strict';
+
 // Load in dependencies
 const expect = require('chai').expect;
 

@@ -1,4 +1,7 @@
 // Taken from https://github.com/twolfson/gulp.spritesmith/blob/6.5.1/test/utils/child.js
+// Enable strict mode for Node.js@4
+'use strict';
+
 // Load in dependencies
 const spawnSync = require('child_process').spawnSync;
 
