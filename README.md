@@ -22,7 +22,7 @@ To get started with our application, run the following:
 npm install -g katex-screenshot
 
 # Generate a .tex file to screenshot
-cat "\\vec{hello} = \\vec{world}" > vector.tex
+echo "\\vec{hello} = \\vec{world}" > vector.tex
 
 # Screenshot our .tex file
 katex-screenshot vector.tex vector.tex.png
