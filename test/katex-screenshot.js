@@ -1,5 +1,5 @@
 // Load in dependencies
-const assert = require('assert');
+const expect = require('chai').expect;
 
 const childUtils = require('./utils/child');
 const imageUtils = require('./utils/image');
@@ -16,12 +16,17 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
   imageUtils.loadExpected(__dirname + '/expected-files/valid.png');
 
   it('generates a screenshot', function () {
-    assert.strictEqual(true, false);
+    expect(this.actualPixels).to.deep.equal(this.expectedPixels);
   });
 });
 
-describe.skip('katex-screenshot screenshotting an invalid .tex file', function () {
-  it('outputs error message', function () {
-    assert.strictEqual(true, false);
+describe('katex-screenshot screenshotting an invalid .tex file', function () {
+  childUtils.runSaveError(katexScreenshotFilepath, [
+    __dirname + '/test-files/invalid.tex',
+    __dirname + '/actual-files/invalid.png']);
+
+  it('outputs an error message', function () {
+    expect(this.err).to.not.equal(null);
+    expect(this.err.message).to.contain('KaTeX parse error');
   });
 });
