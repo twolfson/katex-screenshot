@@ -3,6 +3,12 @@
 const spawnSync = require('child_process').spawnSync;
 
 // Define our execution helper
+function _filterStderr(stderr) {
+  return stderr.split(/\n/g).filter(function isOutOfScopeLine (line) {
+    // Error: [27574:1011/011913.891018:ERROR:gles2_cmd_decoder.cc(2475)] [GroupMarkerNotSet(crbug.com/242999)!:D01089D00A3B0000]GL ERROR :GL_INVALID_ENUM : BackFramebuffer::Create: <- error from previous GL command
+    return !line.includes('GL ERROR');
+  }).join('\n');
+}
 exports.run = function (cmd, args) {
   before(function runFn () {
     // Run our function
@@ -15,7 +21,7 @@ exports.run = function (cmd, args) {
     }
 
     // Otherwise, if there was unexpected `stderr`, then throw it
-    let stderr = spawnResult.stderr.toString();
+    let stderr = _filterStderr(spawnResult.stderr.toString());
     if (stderr) {
       throw new Error(stderr);
     }
@@ -30,7 +36,7 @@ exports.runSaveError = function (cmd, args) {
       return;
     }
 
-    let stderr = spawnResult.stderr.toString();
+    let stderr = _filterStderr(spawnResult.stderr.toString());
     if (stderr) {
       this.err = new Error(stderr);
     }
