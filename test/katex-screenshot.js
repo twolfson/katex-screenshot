@@ -11,6 +11,7 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
   childUtils.run(katexScreenshotFilepath, [
     __dirname + '/test-files/valid.tex',
     __dirname + '/actual-files/valid.png']);
+
   it('generates a screenshot', function () {
     assert.strictEqual(true, false);
   });
