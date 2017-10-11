@@ -1,8 +1,18 @@
 # katex-screenshot [![Build status](https://travis-ci.org/StandardCyborg/katex-screenshot.svg?branch=master)](https://travis-ci.org/StandardCyborg/katex-screenshot)
 
-Convert KaTeX to images via screenshots
+Convert [KaTeX][] to images via screenshots
 
-This was built to make generating images for Medium posts easier
+This was built to make generating images for Medium posts easier. Converts:
+
+```tex
+\vec{hello} = \vec{world}
+```
+
+into
+
+![katex-screenshot result](test/actual-files/valid.png)
+
+[KaTeX]: https://github.com/Khan/KaTeX
 
 ## Getting Started
 To get started with our application, run the following:
@@ -19,10 +29,29 @@ katex-screenshot vector.tex vector.tex.png
 ```
 
 ## Documentation
-_(Coming soon)_
+We provide a CLI via `katex-screenshot`:
+
+```
+  Usage: katex-screenshot [options] <infile.tex> <outfile.png>
+
+
+  Options:
+
+    -V, --version  output the version number
+    -h, --help     output usage information
+```
 
 ## Examples
-_(Coming soon)_
+### Converting multiple files
+To convert multiple files, we recommend sticking to `bash`:
+
+```bash
+# For each of our input files
+for filepath in *.tex; do
+  # Generate a corresponding output file (e.g. foo.tex -> foo.tex.png)
+  katex-screenshot "$filepath" "$filepath.png"
+done
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via `npm run lint` and test via `npm test`.

@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/StandardCyborg/katex-screenshot/issues"
   },
+  "bin": {
+    "katex-screenshot": "bin/katex-screenshot.js"
+  },
   "main": "lib/katex-screenshot",
   "engines": {
     "node": ">= 4.0.0"
