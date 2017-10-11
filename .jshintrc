@@ -8,6 +8,7 @@
   "undef": true,
   "strict": false,
   "node": true,
+  "browser": true,
   "sub": false,
   "globals": {
     "exports": true,
