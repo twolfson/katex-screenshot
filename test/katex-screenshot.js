@@ -7,7 +7,10 @@ const childUtils = require('./utils/child');
 const katexScreenshotFilepath = __dirname + '/../bin/katex-screenshot.js';
 
 // Start our tests
-describe.skip('katex-screenshot screenshotting a valid .tex file', function () {
+describe('katex-screenshot screenshotting a valid .tex file', function () {
+  childUtils.run(katexScreenshotFilepath, [
+    __dirname + '/test-files/valid.tex',
+    __dirname + '/actual-files/valid.png']);
   it('generates a screenshot', function () {
     assert.strictEqual(true, false);
   });

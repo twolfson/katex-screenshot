@@ -5,11 +5,17 @@ const spawnSync = require('child_process').spawnSync;
 // Define our execution helper
 exports.run = function (cmd, args) {
   before(function runFn () {
+    // Run our function
     let spawnResult = spawnSync(cmd, args);
+
+    // If there was an invocation error, then throw it
     let err = spawnResult.error;
     if (err) {
       throw err;
     }
+
+    // Otherwise, if there was unexpected `stderr`, then throw it
+    let stderr = spawnResult.stderr.toString();
     if (stderr) {
       throw new Error(stderr);
     }
@@ -21,7 +27,11 @@ exports.runSaveError = function (cmd, args) {
     let err = spawnResult.error;
     if (err) {
       this.err = err;
-    } else if (stderr) {
+      return;
+    }
+
+    let stderr = spawnResult.stderr.toString();
+    if (stderr) {
       this.err = new Error(stderr);
     }
   });
