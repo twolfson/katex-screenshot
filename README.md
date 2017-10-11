@@ -2,12 +2,20 @@
 
 Convert KaTeX to images via screenshots
 
-## Getting Started
-Install the module with: `npm install katex-screenshot`
+This was built to make generating images for Medium posts easier
 
-```js
-var katexScreenshot = require('katex-screenshot');
-katexScreenshot(); // 'awesome'
+## Getting Started
+To get started with our application, run the following:
+
+```bash
+# Install our package globally
+npm install -g katex-screenshot
+
+# Generate a .tex file to screenshot
+cat "\\vec{hello} = \\vec{world}" > vector.tex
+
+# Screenshot our .tex file
+katex-screenshot vector.tex vector.tex.png
 ```
 
 ## Documentation
