@@ -43,6 +43,9 @@
     "jscs": "~3.0.7",
     "jshint": "~2.9.4",
     "mocha": "~3.1.2",
+    "ndarray": "~1.0.18",
+    "pixelmatch": "~4.0.2",
+    "save-pixels": "~2.3.4",
     "twolfson-style": "~1.6.1"
   },
   "keywords": [

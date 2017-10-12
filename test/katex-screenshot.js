@@ -3,6 +3,8 @@
 
 // Load in dependencies
 const expect = require('chai').expect;
+const pixelmatch = require('pixelmatch');
+const ndarray = require('ndarray');
 
 const childUtils = require('./utils/child');
 const imageUtils = require('./utils/image');
@@ -15,13 +17,32 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
   childUtils.run(katexScreenshotFilepath, [
     __dirname + '/test-files/valid.tex',
     __dirname + '/actual-files/valid.png']);
-  imageUtils.loadPixels('actualPixels', __dirname + '/actual-files/valid.png');
-  imageUtils.loadPixels('expectedPixelsLinux', __dirname + '/expected-files/valid-linux.png');
-  imageUtils.loadPixels('expectedPixelsOsx', __dirname + '/expected-files/valid-osx.png');
+  imageUtils.loadActual(__dirname + '/actual-files/valid.png');
+  imageUtils.loadExpected(__dirname + '/expected-files/valid.png');
 
   it('generates a screenshot', function () {
-    let expectedPixels = process.platform === 'darwin' ? this.expectedPixelsOsx : this.expectedPixelsLinux;
-    expect(this.actualPixels).to.deep.equal(expectedPixels);
+    // Verify dimensions are the same
+    let actualWidth = this.actualPixels.shape[0];
+    let expectedWidth = this.expectedPixels.shape[0];
+    let actualHeight = this.actualPixels.shape[1];
+    let expectedHeight = this.expectedPixels.shape[1];
+    expect(`${actualWidth}x${actualHeight}`).to.equal(`${expectedWidth}x${expectedHeight}`);
+
+    // Perform fuzzy comparison
+    let diffPixels = ndarray(
+        new Uint8Array(expectedWidth * expectedHeight * 4), /* data */
+        [expectedWidth, expectedHeight, 4], /* shape */
+        [4, 4 * expectedWidth, 1], /* stride */
+        0 /* offset */);
+    let numDiffPixels = pixelmatch(
+      this.actualPixels.data, this.expectedPixels.data, diffPixels.data,
+      expectedWidth, expectedHeight, {threshold: 0.3});
+    let MAXIMUM_DIFF_PIXELS = 100;
+    if (numDiffPixels > MAXIMUM_DIFF_PIXELS) {
+      console.error('Unexpected difference, saving diff image to `debug.png`');
+      imageUtils._saveImage('debug.png', diffPixels, function noop () {});
+    }
+    expect(numDiffPixels).to.at.most(MAXIMUM_DIFF_PIXELS);
   });
 });
 
