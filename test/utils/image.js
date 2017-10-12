@@ -30,8 +30,9 @@ exports.loadExpected = function (filepath) {
   });
 };
 
-exports._copyPixels = function (pixels) {
-  return ndarray(new Uint8Array(pixels.data), pixels.shape, pixels.stride, pixels.offset);
+exports._createDiffPixels = function (pixels) {
+  // DEV: We don't copy the data's contents as we want it clean for our diff
+  return ndarray(new Uint8Array(pixels.data.length), pixels.shape, pixels.stride, pixels.offset);
 };
 
 exports._saveImage = function (filepath, pixels, done) {

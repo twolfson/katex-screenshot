@@ -28,7 +28,7 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
     expect(`${actualWidth}x${actualHeight}`).to.equal(`${expectedWidth}x${expectedHeight}`);
 
     // Perform fuzzy comparison
-    let diffPixels = imageUtils._copyPixels(this.expectedPixels);
+    let diffPixels = imageUtils._createDiffPixels(this.expectedPixels);
     let numDiffPixels = pixelmatch(
       this.actualPixels.data, this.expectedPixels.data, diffPixels.data,
       expectedWidth, expectedHeight, {threshold: 0.3});
