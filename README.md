@@ -5,12 +5,12 @@ Convert [KaTeX][] to images via screenshots
 This was built to make generating images for Medium posts easier. Converts:
 
 ```tex
-\vec{hello} = \vec{world}
+\|\vec{hello}\| = c_{world}
 ```
 
 into
 
-![katex-screenshot result](test/expected-files/valid.png)
+![katex-screenshot result](test/expected-files/valid-osx.png)
 
 [KaTeX]: https://github.com/Khan/KaTeX
 
