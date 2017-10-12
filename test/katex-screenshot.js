@@ -20,15 +20,8 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
   imageUtils.loadPixels('expectedPixelsOsx', __dirname + '/expected-files/valid-osx.png');
 
   it('generates a screenshot', function () {
-    try {
-      expect(this.actualPixels).to.deep.equal(this.expectedPixelsLinux);
-    } catch (err) {
-      // Ignore first assertion error
-      if (err.name !== 'AssertionError') {
-        throw err;
-      }
-    }
-    expect(this.actualPixels).to.deep.equal(this.expectedPixelsOsx);
+    let expectedPixels = process.platform === 'darwin' ? this.expectedPixelsOsx : this.expectedPixelsLinux;
+    expect(this.actualPixels).to.deep.equal(expectedPixels);
   });
 });
 
