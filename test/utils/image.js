@@ -6,6 +6,7 @@
 const fs = require('fs');
 
 const getPixels = require('get-pixels');
+const ndarray = require('ndarray');
 const savePixels = require('save-pixels');
 
 // Define our helpers
@@ -27,6 +28,10 @@ exports.loadExpected = function (filepath) {
       done(err);
     });
   });
+};
+
+exports._copyPixels = function (pixels) {
+  return ndarray(new Uint8Array(pixels.data), pixels.shape, pixels.stride, pixels.offset);
 };
 
 exports._saveImage = function (filepath, pixels, done) {
