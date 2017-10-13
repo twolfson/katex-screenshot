@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>katex-screenshot renderer</title>
+    <style>
+      html, body {
+        margin: 0;
+      }
+
+      body {
+        background: white;
+      }
+
+      #container {
+        display: inline-block;
+        /* DEV: We're hardcoding this for now but are opento dynamic padding in the future */
+        padding: 5px;
+      }
+    </style>
+    <!-- KaTeX CSS injected via `index.js` -->
+  </head>
+  <body>
+    <div id="container">{{input_html}}</div>
+  </body>
+</html>
