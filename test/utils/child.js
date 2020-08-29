@@ -15,12 +15,16 @@ function _filterStderr(stderr) {
     //   Xlib:  extension "RANDR" missing on display ":99.0".
     //   process 2776: D-Bus library appears to be incorrectly set up; failed to read machine uuid: Failed to open "/etc/machine-id": No such file or directory
     //     See the manual page for dbus-uuidgen to correct this issue.
+    //   Error: Fontconfig warning: "/etc/fonts/fonts.conf", line 100: unknown element "blank"
+    //   ATTENTION: default value of option force_s3tc_enable overridden by environment.
     // jscs:enable maximumLineLength
     return !(
       line.includes('GL ERROR') ||
       line.includes('extension "RANDR" missing') ||
       line.includes('D-Bus library appears to be incorrectly set up') ||
-      line.includes('manual page for dbus-uuidgen'));
+      line.includes('manual page for dbus-uuidgen') ||
+      line.includes('Fontconfig warning') ||
+      line.includes('default value of option force_s3tc_enable overridden'));
   }).join('\n');
 }
 exports.run = function (cmd, args) {
