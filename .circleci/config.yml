@@ -20,3 +20,17 @@ jobs:
       - run:
           name: Run NPM Tests
           command: npm test
+
+# Run multiple Node.js version tests
+workflows:
+  matrix-tests:
+    jobs:
+      - build:
+          docker:
+            - image: "circleci/node:14-browsers-legacy"
+      - build:
+          docker:
+            - image: "circleci/node:12-browsers-legacy"
+      - build:
+          docker:
+            - image: "circleci/node:10-browsers-legacy"
