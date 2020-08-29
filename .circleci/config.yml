@@ -8,6 +8,7 @@ orbs:
 # DEV: Was burning through time on features that felt experimental (orbs) so moving to more familiar setup
 jobs:
   test:
+    executor: node/default
     steps:
       - node/checkout
       - browser-tools/install-chrome
