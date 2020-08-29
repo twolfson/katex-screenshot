@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.0.1
   node: circleci/node@3.0.0
+
 jobs:
   test:
     docker:
@@ -10,3 +11,6 @@ jobs:
     steps:
       - browser-tools/install-chrome
       - node/test
+
+workflows:
+  test:
