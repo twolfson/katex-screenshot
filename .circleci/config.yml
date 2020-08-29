@@ -7,9 +7,12 @@ orbs:
 # Based on source from https://circleci.com/orbs/registry/orb/circleci/node?version=3.0.0#commands-install-packages
 # DEV: Was burning through time on features that felt experimental (orbs) so moving to more familiar setup
 jobs:
+  parameters:
+    docker-image:
+      type: string
   build:
     docker:
-      - image: "circleci/node:10-browsers-legacy"
+      - image: << parameters.docker-image >>
     steps:
       - checkout
       - node/install-packages
@@ -22,15 +25,13 @@ jobs:
           command: npm test
 
 # Run multiple Node.js version tests
+# https://gist.github.com/felicianotech/481297bc3db4d6c22ed2490f86e88190
 workflows:
   matrix-tests:
     jobs:
       - build:
-          docker:
-            - image: "circleci/node:14-browsers-legacy"
+          docker-image: "circleci/node:14-browsers-legacy"
       - build:
-          docker:
-            - image: "circleci/node:12-browsers-legacy"
+          docker-image: "circleci/node:12-browsers-legacy"
       - build:
-          docker:
-            - image: "circleci/node:10-browsers-legacy"
+          docker-image: "circleci/node:10-browsers-legacy"
