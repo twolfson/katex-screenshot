@@ -4,13 +4,12 @@ orbs:
   browser-tools: circleci/browser-tools@1.0.1
   node: circleci/node@3.0.0
 
-jobs:
-  test:
-    docker:
-      - image: 'cimg/node:14'
-    steps:
-      - browser-tools/install-chrome
-      - node/test
-
 workflows:
   test:
+    jobs:
+      # https://circleci.com/orbs/registry/orb/circleci/node#jobs-test
+      - node/test:
+        # Install Chrome dependencies for Electron before anything else
+        setup:
+          # https://circleci.com/orbs/registry/orb/circleci/browser-tools#commands-install-browser-tools
+          - browser-tools/install-chrome
