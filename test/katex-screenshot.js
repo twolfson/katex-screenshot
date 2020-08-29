@@ -35,8 +35,8 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
     let diffPixels = imageUtils._createDiffPixels(this.expectedPixels);
     let numDiffPixels = pixelmatch(
       this.actualPixels.data, this.expectedPixels.data, diffPixels.data,
-      expectedWidth, expectedHeight, {threshold: 0.3});
-    let MAXIMUM_DIFF_PIXELS = 100;
+      expectedWidth, expectedHeight, {threshold: 0.4});
+    let MAXIMUM_DIFF_PIXELS = 200; // (img size = 5112 (142*36))
     if (numDiffPixels > MAXIMUM_DIFF_PIXELS) {
       console.error('Unexpected difference, saving diff image to `debug.png`');
       imageUtils._saveImage('debug.png', diffPixels, function noop () {});
