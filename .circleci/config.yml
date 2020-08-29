@@ -4,12 +4,13 @@ orbs:
   browser-tools: circleci/browser-tools@1.0.1
   node: circleci/node@3.0.0
 
-workflows:
+# Based on source from https://circleci.com/orbs/registry/orb/circleci/node?version=3.0.0#commands-install-packages
+# DEV: Was burning through time on features that felt experimental (orbs) so moving to more familiar setup
+jobs:
   test:
-    jobs:
-      # https://circleci.com/orbs/registry/orb/circleci/node#jobs-test
-      - node/test:
-        # Install Chrome dependencies for Electron before anything else
-        setup:
-          # https://circleci.com/orbs/registry/orb/circleci/browser-tools#commands-install-browser-tools
-          - browser-tools/install-chrome
+    - node/checkout
+    - browser-tools/install-chrome
+    - node/install-packages
+    - run:
+        name: Run NPM Tests
+        command: npm test
