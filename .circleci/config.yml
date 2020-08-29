@@ -1,11 +1,11 @@
-# Via Getting Started info
+# Based on Getting Started prompt
+#   source from https://circleci.com/orbs/registry/orb/circleci/node?version=3.0.0#commands-install-packages
+#   and https://gist.github.com/felicianotech/481297bc3db4d6c22ed2490f86e88190
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.0.1
   node: circleci/node@3.0.0
 
-# Based on source from https://circleci.com/orbs/registry/orb/circleci/node?version=3.0.0#commands-install-packages
-# DEV: Was burning through time on features that felt experimental (orbs) so moving to more familiar setup
 jobs:
   parameters:
     docker-image:
@@ -25,7 +25,6 @@ jobs:
           command: npm test
 
 # Run multiple Node.js version tests
-# https://gist.github.com/felicianotech/481297bc3db4d6c22ed2490f86e88190
 workflows:
   matrix-tests:
     jobs:
