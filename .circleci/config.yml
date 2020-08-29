@@ -7,10 +7,10 @@ orbs:
   node: circleci/node@3.0.0
 
 jobs:
-  parameters:
-    docker-image:
-      type: string
   build:
+    parameters:
+      docker-image:
+        type: string
     docker:
       - image: << parameters.docker-image >>
     steps:
