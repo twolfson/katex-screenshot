@@ -61,6 +61,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Unlicense
 As of Oct 10 2017, Standard Cyborg has released this repository and its contents to the public domain.
 
+As of Aug 28 2020, Standard Cyborg has transferred ownership to Todd Wolfson. This repository and its contents are still released to the public domain.
+
 It has been released under the [UNLICENSE][].
 
 [UNLICENSE]: UNLICENSE
