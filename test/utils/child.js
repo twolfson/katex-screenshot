@@ -26,7 +26,7 @@ function _filterStderr(stderr) {
 exports.run = function (cmd, args) {
   before(function runFn () {
     // Run our function
-    let spawnResult = spawnSync(cmd, args, {stdio: ['ignore', 'inherit', 'pipe']});
+    let spawnResult = spawnSync(cmd, args, {stdio: ['ignore', 'inherit', 'pipe'], shell: true});
 
     // If there was an invocation error, then throw it
     let err = spawnResult.error;
@@ -43,7 +43,7 @@ exports.run = function (cmd, args) {
 };
 exports.runSaveError = function (cmd, args) {
   before(function runFn () {
-    let spawnResult = spawnSync(cmd, args, {stdio: ['ignore', 'inherit', 'pipe']});
+    let spawnResult = spawnSync(cmd, args, {stdio: ['ignore', 'inherit', 'pipe'], shell: true});
     let err = spawnResult.error;
     if (err) {
       this.err = err;
