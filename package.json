@@ -2,7 +2,7 @@
   "name": "katex-screenshot",
   "description": "Convert KaTeX to images via screenshots",
   "version": "1.2.0",
-  "homepage": "https://github.com/StandardCyborg/katex-screenshot",
+  "homepage": "https://github.com/twolfson/katex-screenshot",
   "author": {
     "name": "Todd Wolfson",
     "email": "todd@twolfson.com",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/StandardCyborg/katex-screenshot.git"
+    "url": "git://github.com/twolfson/katex-screenshot.git"
   },
   "bugs": {
-    "url": "https://github.com/StandardCyborg/katex-screenshot/issues"
+    "url": "https://github.com/twolfson/katex-screenshot/issues"
   },
   "bin": {
     "katex-screenshot": "bin/katex-screenshot.js"

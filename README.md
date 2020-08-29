@@ -1,4 +1,4 @@
-# katex-screenshot [![Build status](https://travis-ci.org/StandardCyborg/katex-screenshot.svg?branch=master)](https://travis-ci.org/StandardCyborg/katex-screenshot)
+# katex-screenshot [![Build status](https://travis-ci.org/twolfson/katex-screenshot.svg?branch=master)](https://travis-ci.org/twolfson/katex-screenshot)
 
 Convert [KaTeX][] to images via screenshots
 
