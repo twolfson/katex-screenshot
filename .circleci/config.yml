@@ -14,5 +14,9 @@ jobs:
       - checkout
       - node/install-packages
       - run:
+          # https://in.mathworks.com/matlabcentral/answers/385952-why-do-i-see-error-while-loading-shared-libraries-libxss-so-1-when-starting-matlab-on-a-linux-mac
+          name: Install Electron dependencies
+          command: sudo apt-get install libxss1
+      - run:
           name: Run NPM Tests
           command: npm test
