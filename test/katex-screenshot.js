@@ -53,7 +53,7 @@ describe('katex-screenshot screenshotting an invalid .tex file', function () {
     __dirname + '/actual-files/invalid.png']);
 
   it('outputs an error message', function () {
-    expect(this.err).to.not.equal(null);
+    expect(this.err).to.be.an('error');
     expect(this.err.message).to.contain('KaTeX parse error');
   });
 });
