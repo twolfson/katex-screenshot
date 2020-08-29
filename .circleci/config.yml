@@ -12,7 +12,6 @@ jobs:
       - image: "circleci/node:10-browsers-legacy"
     steps:
       - checkout
-      - browser-tools/install-chrome
       - node/install-packages
       - run:
           name: Run NPM Tests
