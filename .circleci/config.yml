@@ -10,7 +10,7 @@ jobs:
   build:
     executor: node/default
     steps:
-      - node/checkout
+      - checkout
       - browser-tools/install-chrome
       - node/install-packages
       - run:
