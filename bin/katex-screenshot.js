@@ -23,7 +23,12 @@ child.on('close', function handleExit (code, signal) {
 });
 child.on('exit', function handleExit (code, signal) {
   console.log('exit', code);
-  child = null;
+  child.stdin.close();
+  child.stdout.close();
+  child.stderr.close();
+  process.stdin.close();
+  process.stdout.close();
+  process.stderr.close();
   process.exit(code);
   // throw new Error('foo');
   // process.abort();
