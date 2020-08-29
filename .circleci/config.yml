@@ -6,6 +6,7 @@ orbs:
 jobs:
   test:
     docker:
-      - image: 'cimg
+      - image: 'cimg/node:14'
     steps:
+      - browser-tools/install-chrome
       - node/test
