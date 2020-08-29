@@ -28,10 +28,12 @@ describe('katex-screenshot screenshotting a valid .tex file', function () {
     expect(`${actualWidth}x${actualHeight}`).to.equal(`${expectedWidth}x${expectedHeight}`);
 
     // Perform fuzzy comparison
+    // jscs:disable maximumLineLength
     // DEV: Download failed image from CircleCI via:
     //   Run test with SSH
     //   Use SSH to download via base64 (we tried rsync but didn't try too long)
     //   ssh -p <PORT> <IP> -- 'base64 /home/circleci/project/debug.png' | base64 -d > ~/Desktop/debug.png && xdg-open ~/Desktop/debug.png
+    // jscs:enable maximumLineLength
     let diffPixels = imageUtils._createDiffPixels(this.expectedPixels);
     let numDiffPixels = pixelmatch(
       this.actualPixels.data, this.expectedPixels.data, diffPixels.data,
