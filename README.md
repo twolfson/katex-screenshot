@@ -38,6 +38,7 @@ We provide a CLI via `katex-screenshot`:
   Options:
 
     -V, --version  output the version number
+    --verbose      get verbose output
     -h, --help     output usage information
 ```
 
