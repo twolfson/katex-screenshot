@@ -24,7 +24,6 @@
   },
   "license": "Unlicense",
   "scripts": {
-    "install-package-lock": "npm install --package-lock-only",
     "precheck": "twolfson-style precheck lib/ test/",
     "lint": "twolfson-style lint lib/ test/",
     "test": "mocha --reporter dot --timeout 20000 && npm run lint"
