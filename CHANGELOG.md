@@ -1,4 +1,6 @@
 # katex-screenshot changelog
+1.4.2 - Bumped electron dependency via dependabot in #15
+
 1.4.1 - Fixed accidental publish without upgrade
 
 1.4.0 - Upgraded to electron@11 to fix GitHub vulnerability warning
