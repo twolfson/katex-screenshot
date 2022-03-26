@@ -1,4 +1,6 @@
 # katex-screenshot changelog
+1.5.0 - Bumped electron dependency via dependabot in #16
+
 1.4.2 - Bumped electron dependency via dependabot in #15
 
 1.4.1 - Fixed accidental publish without upgrade
